@@ -15,8 +15,8 @@ const Mutation = prismaObjectType({
         return context.prisma.createPoll({
           question,
           answers: {
-            create: answers.map((a: string) => ({
-              answer: a,
+            create: answers.map(answer => ({
+              answer,
             })),
           },
         });
