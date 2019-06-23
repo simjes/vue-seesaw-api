@@ -1,7 +1,8 @@
-import 'regenerator-runtime/runtime';
 import { ApolloServer } from 'apollo-server';
 import { makePrismaSchema } from 'nexus-prisma';
 import * as path from 'path';
+// tslint:disable-next-line: no-submodule-imports
+import 'regenerator-runtime/runtime';
 import datamodelInfo from './generated/nexus-prisma';
 import { prisma } from './generated/prisma-client';
 import Mutation from './Mutation';
@@ -44,4 +45,5 @@ server
   .listen({
     port: process.env.PORT || 4000,
   })
+  // tslint:disable-next-line: no-console
   .then(({ url }) => console.log(url));
