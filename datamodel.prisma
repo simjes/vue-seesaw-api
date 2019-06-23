@@ -1,0 +1,12 @@
+type Poll {
+  id: ID! @id
+  question: String!
+  answers: [Answer!]!
+}
+
+type Answer {
+  id: ID! @id
+  answer: String!
+  votes: Int! @default(value: 0)
+  poll: Poll! @relation(link: INLINE)
+}

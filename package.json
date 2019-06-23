@@ -1,0 +1,35 @@
+{
+  "name": "vue-seesaw-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "dev": "ts-node-dev --no-notify --respawn --transpileOnly -r dotenv/config ./src",
+    "prisma:deploy": "prisma deploy -e .env.development",
+    "prisma:generate": "prisma generate -e .env.development"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.6.4",
+    "graphql": "^14.3.1",
+    "nexus": "^0.12.0-beta.6",
+    "nexus-prisma": "^0.3.7",
+    "prisma-client-lib": "^1.34.0",
+    "regenerator-runtime": "^0.13.2"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.2.1",
+    "@types/node": "^12.0.10",
+    "dotenv": "^8.0.0",
+    "prettier": "^1.18.2",
+    "prisma": "^1.34.0",
+    "ts-node": "^8.3.0",
+    "ts-node-dev": "^1.0.0-pre.40",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "3.4.5"
+  }
+}
