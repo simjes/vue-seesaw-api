@@ -23,7 +23,7 @@ const schema = makePrismaSchema({
   },
 });
 
-// const isDevelopment = process.env.NODE_ENV === "development";
+const isDevelopment = process.env.NODE_ENV === 'development';
 const server = new ApolloServer({
   schema,
   context: (initialContext): Context => {
@@ -33,9 +33,9 @@ const server = new ApolloServer({
       prisma,
     };
   },
-  playground: true, // isDevelopment
-  debug: true, // isDevelopment
-  introspection: true, // isDevelopment
+  playground: isDevelopment,
+  debug: isDevelopment,
+  introspection: isDevelopment,
   cors: {
     origin: process.env.CLIENT_URL,
   },
