@@ -37,7 +37,7 @@ const server = new ApolloServer({
   debug: isDevelopment,
   introspection: isDevelopment,
   cors: {
-    origin: process.env.CLIENT_URL,
+    origin: process.env.CLIENT_ORIGIN,
   },
 });
 
