@@ -98,6 +98,7 @@ export interface NexusGenInputs {
 
 export interface NexusGenEnums {
   AnswerOrderByInput: "answer_ASC" | "answer_DESC" | "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "updatedAt_ASC" | "updatedAt_DESC" | "votes_ASC" | "votes_DESC"
+  MutationType: "CREATED" | "DELETED" | "UPDATED"
 }
 
 export interface NexusGenRootTypes {
@@ -106,12 +107,24 @@ export interface NexusGenRootTypes {
     id: string; // ID!
     votes: number; // Int!
   }
+  AnswerPreviousValues: { // root type
+    answer: string; // String!
+    id: string; // ID!
+    votes: number; // Int!
+  }
+  AnswerSubscriptionPayload: { // root type
+    mutation: NexusGenEnums['MutationType']; // MutationType!
+    node?: NexusGenRootTypes['Answer'] | null; // Answer
+    previousValues?: NexusGenRootTypes['AnswerPreviousValues'] | null; // AnswerPreviousValues
+    updatedFields?: string[] | null; // [String!]
+  }
   Mutation: {};
   Poll: { // root type
     id: string; // ID!
     question: string; // String!
   }
   Query: {};
+  Subscription: {};
   String: string;
   Int: number;
   Float: number;
@@ -124,6 +137,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   PollWhereInput: NexusGenInputs['PollWhereInput'];
   PollWhereUniqueInput: NexusGenInputs['PollWhereUniqueInput'];
   AnswerOrderByInput: NexusGenEnums['AnswerOrderByInput'];
+  MutationType: NexusGenEnums['MutationType'];
 }
 
 export interface NexusGenFieldTypes {
@@ -132,6 +146,17 @@ export interface NexusGenFieldTypes {
     id: string; // ID!
     poll: NexusGenRootTypes['Poll']; // Poll!
     votes: number; // Int!
+  }
+  AnswerPreviousValues: { // field return type
+    answer: string; // String!
+    id: string; // ID!
+    votes: number; // Int!
+  }
+  AnswerSubscriptionPayload: { // field return type
+    mutation: NexusGenEnums['MutationType']; // MutationType!
+    node: NexusGenRootTypes['Answer'] | null; // Answer
+    previousValues: NexusGenRootTypes['AnswerPreviousValues'] | null; // AnswerPreviousValues
+    updatedFields: string[] | null; // [String!]
   }
   Mutation: { // field return type
     createPoll: NexusGenRootTypes['Poll']; // Poll!
@@ -144,6 +169,9 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     poll: NexusGenRootTypes['Poll'] | null; // Poll
+  }
+  Subscription: { // field return type
+    pollResult: NexusGenRootTypes['AnswerSubscriptionPayload']; // AnswerSubscriptionPayload!
   }
 }
 
@@ -173,6 +201,11 @@ export interface NexusGenArgTypes {
       where: NexusGenInputs['PollWhereUniqueInput']; // PollWhereUniqueInput!
     }
   }
+  Subscription: {
+    pollResult: { // args
+      pollId?: string | null; // ID
+    }
+  }
 }
 
 export interface NexusGenAbstractResolveReturnTypes {
@@ -180,11 +213,11 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Answer" | "Mutation" | "Poll" | "Query";
+export type NexusGenObjectNames = "Answer" | "AnswerPreviousValues" | "AnswerSubscriptionPayload" | "Mutation" | "Poll" | "Query" | "Subscription";
 
 export type NexusGenInputNames = "AnswerWhereInput" | "PollWhereInput" | "PollWhereUniqueInput";
 
-export type NexusGenEnumNames = "AnswerOrderByInput";
+export type NexusGenEnumNames = "AnswerOrderByInput" | "MutationType";
 
 export type NexusGenInterfaceNames = never;
 

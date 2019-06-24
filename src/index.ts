@@ -7,10 +7,11 @@ import datamodelInfo from './generated/nexus-prisma';
 import { prisma } from './generated/prisma-client';
 import Mutation from './Mutation';
 import Query from './Query';
+import { PollResultSubscription } from './Subscription';
 import { Context } from './types';
 
 const schema = makePrismaSchema({
-  types: [Query, Mutation],
+  types: [Query, Mutation, PollResultSubscription],
 
   prisma: {
     datamodelInfo,

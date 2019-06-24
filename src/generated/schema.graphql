@@ -22,6 +22,19 @@ enum AnswerOrderByInput {
   votes_DESC
 }
 
+type AnswerPreviousValues {
+  answer: String!
+  id: ID!
+  votes: Int!
+}
+
+type AnswerSubscriptionPayload {
+  mutation: MutationType!
+  node: Answer
+  previousValues: AnswerPreviousValues
+  updatedFields: [String!]
+}
+
 input AnswerWhereInput {
   AND: [AnswerWhereInput!]
   answer: String
@@ -68,6 +81,12 @@ input AnswerWhereInput {
 type Mutation {
   createPoll(answers: [String!]!, question: String!): Poll!
   vote(answerId: ID!): Answer!
+}
+
+enum MutationType {
+  CREATED
+  DELETED
+  UPDATED
 }
 
 type Poll {
@@ -119,4 +138,8 @@ input PollWhereUniqueInput {
 
 type Query {
   poll(where: PollWhereUniqueInput!): Poll
+}
+
+type Subscription {
+  pollResult(pollId: ID): AnswerSubscriptionPayload!
 }
